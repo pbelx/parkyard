@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/vue.min.js"></script>
+    <script src="js/jq.min.js"></script>
+
+    <link rel="stylesheet" href="css/bulma.min.css">
+
+
+    <title>Park API</title>
+</head>
+
+<body>
+    <div id="app" class="containe">
+        <div class="tabs is-centered is-boxed">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="is-active"><a>Search Plate</a></li>
+                <li><a href="payments.html">Payments</a></li>
+                <li><a href="ticket.html">Sticker</a></li>
+            </ul>
+        </div>
+
+        <div class="columns ">
+            <div class="column is-2  " style="margin-left:20px;">
+                <p class="title">
+                    <h3>Parking System </h3>
+                    <subtitle>Version 1.2</subtitle>
+                </p>
+                <br>
+                <div class="field">
+                    <label class="label">Search Plate</label>
+                    <p class="control">
+                        <input class="input is-primary" type="text" v-model="searchp" v-on:keyup="autosearch" v-on:keyup.enter="searchplate"
+                            placeholder="Search Plate Number">
+                    </p>
+
+
+                </div>
+                <button class="button is-info is-fullwidth" v-on:click="searchplate">Search</button>
+                <!-- <button class="button is-warning" id="delbtn">Delete</button> -->
+
+            </div>
+
+            <div class="column is-7" id="search">
+                <table class="table is-full-width is-hoverable" id="tbid">
+                    <thead>
+                        <tr>
+                            <th>Number <br> Plate</th>
+                            <th>Invoice <br> Number</th>
+                            <th>Parking Date </th>
+                            <th>Pdate</th>
+                            <th>Location</th>
+                            <th>Arrv Time</th>
+                            <th>Dep Time</th>
+                            <th>Status</th>
+                            <th>Fine</th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody id="searcharena">
+                        <tr v-for="item in reply" >
+                            <td >{{item.plate}}</td>
+                            <td>{{item.invoice}}</td>
+                            <td>{{item.parkdate}}</td>
+                            <td>{{item.pdate}}</td>
+                            <td>{{item.location}}</td>
+                            <td>{{item.time}}</td>
+                            <td>{{item.Dtime}}</td>
+                            <td>{{item.status}}</td>
+                            <td>{{item.fine}}</td>
+                        </tr>
+
+
+
+                    </tbody>
+                </table>
+                <div>
+                    <p v-for="item in total"><b>Total :</b>{{item.total}}</p>
+                </div>
+                <!-- <div>
+                    <button class="button is-warning">Add Clamp Fee</button>
+                </div> -->
+            </div>
+            <div class="column is-2 " style="margin-left:30px;">
+                <div>
+                    <br>
+                    <br>
+                    <p v-model="platechoice"><b>Plate Number </b>:{{searchp}}</p>
+                    <div>
+                        <p v-for="item in total"><b>Total :</b>{{item.total}}</p>
+                    </div>
+                    <label for="">Amount</label>
+                    <div class="field">
+                        <input class="input control" type="number" v-model='pamount' placeholder="Amount">
+                    </div>
+                    <div class="field">
+                        <label for="">Receipt Number</label>
+                        <input class="input control" type="number" v-model='receipt' placeholder="Receipt Number">
+                    </div>
+                    <p id="cv">Amount : {{pamount}}</p>
+                    <p id="pl">Receipt No. : {{receipt}} </p>
+                    <br>
+
+                    <p class="buttons are-full-width">
+                        <button class="button is-info is-fullwidth" v-on:click="checktotal">Pay for Item</button>
+                        <!-- <button class="button is-primary " id="fullpay_btn">Full Pay</button> -->
+                    </p>
+                    <p class="buttons is-grouped">
+                        <!-- <button class="button is-warning is-small" id="okaypay">OK Pay</button> -->
+                        <a class="button is-primary" v-on:click="addclamp">Add Clamp Fee</a>
+                        <a class="button is-warning " v-on:click="vip">Mark Exempt</a>
+                        
+                    </p>
+
+                </div>
+            </div>
+            <script src="js/test.js"></script>
+        </div>
+
+
+</body>
+
