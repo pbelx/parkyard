@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/bulma.min.css">
+  <script src="js/vue.min.js"></script>
+  <script src="js/jq.min.js"></script>
+  <title>Park API</title>
+</head>
+
+<body>
+  <div id="app" class="container">
+    <div class="tabs is-centered is-boxed">
+      <ul>
+        <li class="is-active"><a>Home</a></li>
+        <li><a href="search.html">Search Plate</a></li>
+        <li><a href="payments.html">Payments</a></li>
+        <li><a href="ticket.html">BuyTicket</a></li>
+
+      </ul>
+    </div>
+    <div class="columns">
+      <div class="column is-3 is-offset-1 ">
+        <!-- <p class="title"><h3>Parking System </h3>
+            <subtitle>Version 2.0</subtitle> </p>
+          <br> -->
+        <label class="label">Plate Number</label>
+        <div class="field">
+          <p class="control ">
+            <input class="input is-primary" type="text" v-model='plate' placeholder="Enter plate number">
+          </p>
+        </div>
+        <label class="label">Status</label>
+        <!-- <div class="field">
+          <p class="control ">
+            <input class="input is-primary" type="text" v-model="status" v-on:keydown.enter="save" placeholder="Enter Status" >
+          </p>
+        </div> -->
+        <div class="select">
+          <select>
+            
+            <option>Defaulting</option>
+            <option>Wrong Parking</option>
+          </select>
+        </div>
+<div class="field">
+  <p>
+    <button class="button is-primary" v-on:click="save">Save</button>
+    <button class="button is-primary" v-on:click="getd">Get All</button>
+  </p>
+</div>
+      </div>
+      <div class="column is-4">
+        <p v-if="show===true">{{plate}}</p>
+        <p v-if="show===true">{{status}}</p>
+       
+      </div>
+      <div class="column is-4">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Plate </th>
+              <th>Status </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in reply">
+              <td >{{item.plate}}</td>
+              <td >{{item.status}}</td>
+            </tr>
+         
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  
+
+    <script src="js/getinputs.js"></script>
+</body>
+
+</html>
